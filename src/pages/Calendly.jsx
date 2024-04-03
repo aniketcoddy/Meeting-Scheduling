@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import CalendlyStep1 from "../components/CalendlyStep1";
 import CalendlyStep2 from "../components/CalendlyStep2";
 import CalendlyStep3 from "../components/CalendlyStep3";

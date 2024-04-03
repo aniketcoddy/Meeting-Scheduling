@@ -1,5 +1,4 @@
-import React from 'react'
-import Calender from '../pages/Calender'
+import Calender from "./Calender";
 
 const CalendlyStep2 = ({ formData, setFormData, setCurrentStep }) => {
   return (
