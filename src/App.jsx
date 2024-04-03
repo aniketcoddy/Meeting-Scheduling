@@ -11,7 +11,7 @@ function App() {
         <button className="border-2 border-black p-3" onClick={()=>{setOpen(true)}}>Schedule Meeting</button>
       </div>
 
-      <div className={`${open?"flex":"hidden"} h-screen w-screen  items-center justify-center top-0 left-0 bg-black/10  z-50 backdrop-blur-2xl`}>
+      <div className={`${open?"flex":"hidden"} h-screen w-screen overflow-x-hidden items-center justify-center top-0 left-0 bg-black/10  z-50 backdrop-blur-2xl`}>
         <Calendly />
       </div>
     </>
