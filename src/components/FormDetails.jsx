@@ -22,6 +22,7 @@ const FormDetails = ({
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const[error , setError] = useState(false)
 
   // Function to handle changes in name input
   const handleNameChange = (event) => {
@@ -35,11 +36,17 @@ const FormDetails = ({
 
   const handleAddGuest = () => {
     // Here you can do whatever you want with the name and email, for now, just printing them
-    setFormData((prev) => ({
-          ...prev,
-          detailsForm: { ...prev.detailsForm, name: {name} , email:{email} },
-        }));
-        setCurrentStep(4)
+
+    if(name.length==0 || email.length==0){
+        setError(true)
+    }else{
+      setFormData((prev) => ({
+        ...prev,
+        detailsForm: { ...prev.detailsForm, name: {name} , email:{email} },
+      }));
+      setCurrentStep(4)
+    }
+    
   };
 
   return (
@@ -52,7 +59,7 @@ const FormDetails = ({
         <div className="flex flex-col gap-2">
           <h1 className="text-sm font-semibold">Name *</h1>
           <input
-            className="ring-1 ring-black w-56 rounded-sm p-1"
+            className={`ring-1 ${error ? "ring-red-600":"ring-black"} w-56 rounded-sm p-1`}
             placeholder="enter your name" 
             type="text"
             value={name}
@@ -63,7 +70,7 @@ const FormDetails = ({
         <div className="flex flex-col gap-2">
           <h1 className="text-sm font-semibold">Email *</h1>
           <input
-            className="ring-1 ring-black w-56 rounded-sm p-1"
+            className={`ring-1 ${error ? "ring-red-600":"ring-black"} w-56 rounded-sm p-1`}
             placeholder="enter your Email"
             type="email"
             value={email}
