@@ -198,7 +198,7 @@ export default function CalendlyStep2({
 
               {/* choose the time section */}
               <div className="sm:hidden">
-                <div className="flex w-60 m-2 overflow-x-scroll scrollbar-thin scrollbar-track-white scrollbar-thumb-[#0f1829]">
+                <div className="flex w-60 m-2 overflow-x-scroll scrollbar-thin scrollbar-track-white scrollbar-thumb-[#6c7b96]">
                   {time.map((data, index) => {
                     return (
                       <p
