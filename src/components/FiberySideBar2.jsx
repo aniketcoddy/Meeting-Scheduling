@@ -16,7 +16,7 @@ const FiberySideBar2 = ({
   return (
 
     // parent conatiner
-    <div className="flex flex-col sm:gap-4 "> 
+    <div className="flex flex-col sm:gap-4 bg-white"> 
       <div className="flex flex-col my-5 lg:my-3 gap-3 items-center">
         <img src={logo} alt="Logo" className="w-10 h-10 sm:w-24 sm:h-24"/>
       </div>
