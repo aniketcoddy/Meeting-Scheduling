@@ -1,11 +1,13 @@
 import dayjs from "dayjs";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { generateDate, months } from "../pages/CalenderLogic";
 import cn from "../pages/cn";
 import { GrFormNext, GrFormPrevious } from "react-icons/gr";
 import FiberySideBar from "./FiberySideBar";
 import { FaEarthAfrica } from "react-icons/fa6";
 import { IoIosArrowDown } from "react-icons/io";
+import "aos/dist/aos.css";
+import Aos from "aos";
 
 export default function CalendlyStep2({
   formData,
@@ -28,9 +30,15 @@ export default function CalendlyStep2({
     setOpenStates(updatedOpenStates);
   };
 
+  // useEffect(() => {
+  //   Aos.init();
+  // }, []);
+
   return (
     //calender parent div
     <div
+      // data-aos="zoom-in"
+      // data-aos-duration="500"
       className={`border-2 border-white border-solid ${
         next ? "mt-44" : "mt-32"
       } mb-5 bg-white rounded-lg sm:mt-0 shadow-2xl p-3 sm:p-0`}
@@ -54,104 +62,104 @@ export default function CalendlyStep2({
             {/* main calender div */}
             <div className="flex flex-col sm:flex-row">
               <div>
-              <div className="w-64 h-30 sm:w-72  p-3">
-                {/* container for changing the month */}
-                <div className="flex items-center justify-center lg:ml-10 ">
-                  <GrFormPrevious
-                    className="w-6 h-6 cursor-pointer hover:scale-105 text-gray-500 transition-all"
-                    onClick={() => {
-                      setToday(today.month(today.month() - 1));
-                    }}
-                  />
-                  <div className="w-36 flex justify-center">
-                    <h1 className="select-none lg:text-base font-semibold">
-                      {months[today.month()]} {today.year()}
-                    </h1>
-                  </div>
-                  <GrFormNext
-                    className={`w-6 h-6 cursor-pointer hover:scale-105 transition-all ${
-                      select
-                        ? "bg-[#d2f0f8] text-[#2259CA]"
-                        : "bg-white text-gray-500"
-                    } rounded-full`}
-                    onClick={() => {
-                      setToday(today.month(today.month() + 1));
-                      setSelect(true);
-                    }}
-                  />
-                </div>
-
-                {/* the day container */}
-                <div className="grid grid-cols-7 lg:gap-4">
-                  {days.map((day, index) => {
-                    return (
-                      <h1
-                        key={index}
-                        className="text-xs text-center lg: h-14 w-10 lg:w-12  grid place-content-center text-black font-semibold select-none"
-                      >
-                        {day}
+                <div className="w-64 h-30 sm:w-72  p-3">
+                  {/* container for changing the month */}
+                  <div className="flex items-center justify-center lg:ml-10 ">
+                    <GrFormPrevious
+                      className="w-6 h-6 cursor-pointer hover:scale-105 text-gray-500 transition-all"
+                      onClick={() => {
+                        setToday(today.month(today.month() - 1));
+                      }}
+                    />
+                    <div className="w-36 flex justify-center">
+                      <h1 className="select-none lg:text-base font-semibold">
+                        {months[today.month()]} {today.year()}
                       </h1>
-                    );
-                  })}
-                </div>
+                    </div>
+                    <GrFormNext
+                      className={`w-6 h-6 cursor-pointer hover:scale-105 transition-all ${
+                        select
+                          ? "bg-[#d2f0f8] text-[#2259CA]"
+                          : "bg-white text-gray-500"
+                      } rounded-full`}
+                      onClick={() => {
+                        setToday(today.month(today.month() + 1));
+                        setSelect(true);
+                      }}
+                    />
+                  </div>
 
-                {/* the calender element container */}
-                <div className=" grid grid-cols-7 lg:w-72 ">
-                  {generateDate(today.month(), today.year()).map(
-                    ({ date, currentMonth, today }, index) => {
+                  {/* the day container */}
+                  <div className="grid grid-cols-7 lg:gap-4">
+                    {days.map((day, index) => {
                       return (
-                        <div
+                        <h1
                           key={index}
-                          className="p-2  text-center h-8 lg:h-12 grid place-content-center text-sm "
+                          className="text-xs text-center lg: h-14 w-10 lg:w-12  grid place-content-center text-black font-semibold select-none"
                         >
-                          <h1
-                            className={cn(
-                              currentMonth ? "" : "text-gray-400",
-                              today
-                                ? "border-b-2 w-7 h-8 rounded-full border-[#2259CA]"
-                                : "",
-                              formData?.selectedDate
-                                ?.toDate()
-                                ?.toDateString() ===
-                                date.toDate().toDateString()
-                                ? "bg-[#d2f0f8] text-[#2259CA]"
-                                : "text-[#b0afaf]",
-                              "h-8 w-8 grid font-semibold place-content-center hover:bg-[#d2f0f8] hover:text-[#757474] rounded-full transition-all cursor-pointer select-none"
-                            )}
-                            onClick={() => {
-                              setFormData((prev) => ({
-                                ...prev,
-                                selectedDate: date,
-                              }));
-                              setCurrentStep(2);
-                              //setSelectDate(date);
-                            }}
-                          >
-                            {date.date()}
-                          </h1>
-                        </div>
+                          {day}
+                        </h1>
                       );
-                    }
-                  )}
-                </div>
-              </div>
+                    })}
+                  </div>
 
-              <div className="md:flex hidden flex-col mx-2 my-2 sm:mb-12 sm:ml-6 gap-2">
-                <h1 className="font-bold text-base sm:text-sm">Time zone</h1>
-                <span className="flex items-center gap-3">
-                  <FaEarthAfrica />
-                  <h1 className="text-sm font-semibold sm:text-xs">
-                    UK,Ireland,Lisbon Time(16:54)
-                  </h1>
-                  <IoIosArrowDown />
-                </span>
-              </div>
+                  {/* the calender element container */}
+                  <div className=" grid grid-cols-7 lg:w-72 ">
+                    {generateDate(today.month(), today.year()).map(
+                      ({ date, currentMonth, today }, index) => {
+                        return (
+                          <div
+                            key={index}
+                            className="p-2  text-center h-8 lg:h-12 grid place-content-center text-sm "
+                          >
+                            <h1
+                              className={cn(
+                                currentMonth ? "" : "text-gray-400",
+                                today
+                                  ? "border-b-2 w-7 h-8 rounded-full border-[#2259CA]"
+                                  : "",
+                                formData?.selectedDate
+                                  ?.toDate()
+                                  ?.toDateString() ===
+                                  date.toDate().toDateString()
+                                  ? "bg-[#d2f0f8] text-[#2259CA]"
+                                  : "text-[#b0afaf]",
+                                "h-8 w-8 grid font-semibold place-content-center hover:bg-[#d2f0f8] hover:text-[#757474] rounded-full transition-all cursor-pointer select-none"
+                              )}
+                              onClick={() => {
+                                setFormData((prev) => ({
+                                  ...prev,
+                                  selectedDate: date,
+                                }));
+                                setCurrentStep(2);
+                                //setSelectDate(date);
+                              }}
+                            >
+                              {date.date()}
+                            </h1>
+                          </div>
+                        );
+                      }
+                    )}
+                  </div>
+                </div>
+
+                <div className="md:flex hidden flex-col mx-2 my-2 sm:mb-12 sm:ml-6 gap-2">
+                  <h1 className="font-bold text-base sm:text-sm">Time zone</h1>
+                  <span className="flex items-center gap-3">
+                    <FaEarthAfrica />
+                    <h1 className="text-sm font-semibold sm:text-xs">
+                      UK,Ireland,Lisbon Time(16:54)
+                    </h1>
+                    <IoIosArrowDown />
+                  </span>
+                </div>
               </div>
 
               {/* choose time full screen */}
               <div className="hidden gap-7 mt-3 sm:flex md:ml-8 sm:flex-col">
                 <div className="flex items-center justify-center">
-                  <p className="text-sm font-semibold">Thursday, November 30</p>
+                  <p className="text-sm font-semibold"></p>
                 </div>
 
                 <div className="flex sm:flex-col overflow-y-scroll scrollbar-thin scrollbar-track-white scrollbar-thumb-[#0f1829] h-80 ml-2">

@@ -27,6 +27,7 @@ console.log('formData',formData )
     <div>
       {currentStep === 1 && (
         <CalendlyStep1
+        currentStep={currentStep}
           setCurrentStep={setCurrentStep}
           formData={formData}
           setFormData={setFormData}
@@ -34,6 +35,7 @@ console.log('formData',formData )
       )}
       {currentStep === 2 && (
         <CalendlyStep2
+        currentStep={currentStep}
           setCurrentStep={setCurrentStep}
           formData={formData}
           setFormData={setFormData}
@@ -41,6 +43,7 @@ console.log('formData',formData )
       )}
       {currentStep === 3 && (
         <CalendlyStep3
+        currentStep={currentStep}
           setCurrentStep={setCurrentStep}
           formData={formData}
           setFormData={setFormData}
@@ -48,6 +51,7 @@ console.log('formData',formData )
       )}
       {currentStep === 4 && (
         <CalendlyStep4
+        currentStep={currentStep}
           setCurrentStep={setCurrentStep}
           formData={formData}
           setFormData={setFormData}

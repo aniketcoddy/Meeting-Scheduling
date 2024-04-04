@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import logo from "../assets/logo.jpg";
 import { MdOutlinePerson } from "react-icons/md";
 import { FaEarthAfrica } from "react-icons/fa6";
@@ -7,11 +7,19 @@ import { FaVideo } from "react-icons/fa";
 import check from "../assets/check.png";
 import google from "../assets/google.png";
 import microsoft from "../assets/microsoft.png";
-import user from "../assets/user4.jpeg"
+import user from "../assets/user4.jpeg";
+import "aos/dist/aos.css";
+import Aos from "aos";
 
-const CalendlyStep4 = () => {
+const CalendlyStep4 = ({}) => {
+  // useEffect(() => {
+  //   Aos.init();
+  // }, []);
+
   return (
     <div
+      // data-aos="zoom-in"
+      // data-aos-duration="500"
       className={`border-2 border-white border-solid bg-white rounded-lg sm:w-[700px] shadow-2xl p-3 sm:p-0`}
     >
       <div className="flex justify-center flex-col bg-white  items-center ">
@@ -20,7 +28,6 @@ const CalendlyStep4 = () => {
           <div className="sm:p-3">
             <div className="flex flex-col sm:gap-4 bg-white">
               <div className="flex flex-col  gap-3">
-
                 {/* user image */}
                 <div className="flex flex-col gap-3 items-center">
                   <img
@@ -36,14 +43,12 @@ const CalendlyStep4 = () => {
                 </div>
               </div>
 
-              
-              <div className="flex items-center sm:px-5 justify-center">
-                  <h1 className=" text-xs font-semibold sm:text-sm flex w-[300px] sm:w-full text-center">
-                    A calender invitation has been sent to
-                    vishnoianiket903@gmail.com
-                  </h1>
-                </div>
-              
+              <div className="flex items-center pl-7 sm:pl-5 justify-center">
+                <h1 className=" text-[9px] font-semibold sm:text-sm flex w-[300px] sm:w-full text-center">
+                  A calender invitation has been sent to
+                  vishnoianiket903@gmail.com
+                </h1>
+              </div>
 
               <div className="flex flex-col gap-4  ring-1 ring-gray-300 p-3 rounded-md">
                 <div>
