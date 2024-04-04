@@ -10,16 +10,24 @@ import microsoft from "../assets/microsoft.png";
 import user from "../assets/user4.jpeg";
 import "aos/dist/aos.css";
 import Aos from "aos";
+import { formatDate } from "../HelperFunction";
 
-const CalendlyStep4 = ({}) => {
-  // useEffect(() => {
-  //   Aos.init();
-  // }, []);
+// this is the final step where you see your final display information and meeting time
 
+const CalendlyStep4 = ({ formData, setFormData, setCurrentStep }) => {
+  useEffect(() => {
+    Aos.init();
+  }, []);
+
+  // adding 00:45 min to every selected day time
+  const selectedTime = new Date(`2000-01-01T${formData.selectedTime.data}:00`);
+  selectedTime.setMinutes(selectedTime.getMinutes() + 45);
+  const result = `${selectedTime.getHours().toString().padStart(2, '0')}:${selectedTime.getMinutes().toString().padStart(2, '0')}`;
+  
   return (
     <div
-      // data-aos="zoom-in"
-      // data-aos-duration="500"
+      data-aos="zoom-in"
+      data-aos-duration="500"
       className={`border-2 border-white border-solid bg-white rounded-lg sm:w-[700px] shadow-2xl p-3 sm:p-0`}
     >
       <div className="flex justify-center flex-col bg-white  items-center ">
@@ -37,16 +45,20 @@ const CalendlyStep4 = ({}) => {
                   />
                 </div>
 
-                <div className="flex items-center gap-2 justify-center">
-                  <img src={check} alt="check" className="w-5 h-5" />
+                <div 
+                 data-aos="zoom-in"
+                 data-aos-duration="700"
+                className="flex items-center gap-2 justify-center">
+                  <img
+                  src={check} alt="check" className="w-5 animate-pulse h-5" />
                   <h1 className="text-lg font-bold">You are scheduled</h1>
                 </div>
               </div>
 
               <div className="flex items-center pl-7 sm:pl-5 justify-center">
                 <h1 className=" text-[9px] font-semibold sm:text-sm flex w-[300px] sm:w-full text-center">
-                  A calender invitation has been sent to
-                  vishnoianiket903@gmail.com
+                  A calender invitation has been sent to {" "}
+                  {formData.detailsForm.email.email}
                 </h1>
               </div>
 
@@ -62,7 +74,7 @@ const CalendlyStep4 = ({}) => {
                   {" "}
                   <MdOutlinePerson className="w-5 h-5 sm:w-4 sm:h-4  text-gray-500" />
                   <p className="font-semibold text-sm sm:text-[14px] text-gray-500">
-                    Polina Zenevich
+                    {formData.detailsForm.name.name}
                   </p>
                 </div>
 
@@ -70,7 +82,7 @@ const CalendlyStep4 = ({}) => {
                   <CiCalendarDate className="w-6 h-6 text-gray-500" />
                   <div>
                     <span className="flex text-gray-500 w-72 text-sm font-semibold">
-                      12:00 - 12:45, Thursday, November 30,2023
+                    {formData.selectedTime.data} - {result}, {formatDate(new Date(formData.selectedDate))}
                     </span>
                   </div>
                 </div>

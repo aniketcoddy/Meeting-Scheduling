@@ -4,16 +4,18 @@ import "aos/dist/aos.css";
 import Aos from "aos";
 import { useEffect } from "react";
 
+// this is the third step where you find enter your personal details
+
 const CalendlyStep3 = ({ formData, setFormData, setCurrentStep }) => {
 
-  // useEffect(() => {
-  //   Aos.init();
-  // }, []);
+  useEffect(() => {
+    Aos.init();
+  }, []);
 
   return (
     <div
-      // data-aos="zoom-in"
-      // data-aos-duration="500"
+      data-aos="zoom-in"
+      data-aos-duration="500"
       className={`border-2 border-white border-solid mb-5 mt-[700px] sm:mt-0 bg-white rounded-lg shadow-2xl p-3 sm:p-0`}
     >
       <div className="flex justify-center flex-col bg-white  items-center ">

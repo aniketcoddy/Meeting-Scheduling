@@ -1,4 +1,5 @@
 import dayjs from "dayjs";
+import  {formatDate} from "../HelperFunction";
 import React, { useEffect, useState } from "react";
 import { generateDate, months } from "../pages/CalenderLogic";
 import cn from "../pages/cn";
@@ -8,6 +9,8 @@ import { FaEarthAfrica } from "react-icons/fa6";
 import { IoIosArrowDown } from "react-icons/io";
 import "aos/dist/aos.css";
 import Aos from "aos";
+
+// this is the next page where you select time for the meeting
 
 export default function CalendlyStep2({
   formData,
@@ -30,15 +33,13 @@ export default function CalendlyStep2({
     setOpenStates(updatedOpenStates);
   };
 
-  // useEffect(() => {
-  //   Aos.init();
-  // }, []);
+  useEffect(() => {
+    Aos.init();
+  }, []);
 
   return (
     //calender parent div
     <div
-      // data-aos="zoom-in"
-      // data-aos-duration="500"
       className={`border-2 border-white border-solid ${
         next ? "mt-44" : "mt-32"
       } mb-5 bg-white rounded-lg sm:mt-0 shadow-2xl p-3 sm:p-0`}
@@ -157,9 +158,12 @@ export default function CalendlyStep2({
               </div>
 
               {/* choose time full screen */}
-              <div className="hidden gap-7 mt-3 sm:flex md:ml-8 sm:flex-col">
-                <div className="flex items-center justify-center">
-                  <p className="text-sm font-semibold"></p>
+              <div 
+               data-aos="zoom-in"
+               data-aos-duration="500"
+              className="hidden gap-7 mt-3 sm:flex md:ml-8 sm:flex-col">
+                <div className="flex items-center sm:-ml-4 justify-center">
+                  <p className="text-base font-semibold">{formatDate(new Date(formData.selectedDate))}</p>
                 </div>
 
                 <div className="flex sm:flex-col overflow-y-scroll scrollbar-thin scrollbar-track-white scrollbar-thumb-[#0f1829] h-80 ml-2">
@@ -192,7 +196,7 @@ export default function CalendlyStep2({
                   } justify-center mr-3 items-center gap-1`}
                 >
                   <p className="bg-gray-700 p-2 -mt-5 rounded-[5px] px-5 text-sm text-white font-semibold ">
-                    11:00
+                    {formData?.selectedTime?.data}
                   </p>
 
                   <button
