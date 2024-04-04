@@ -28,6 +28,8 @@ const CalendlyStep3 = ({ formData, setFormData, setCurrentStep }) => {
               setFormData={setFormData}
             />
           </div>
+          
+          {/* form detail section */}
           <div className="hidden sm:flex ring-[0.5px] ring-gray-200"></div>
           <div>
             <FormDetails

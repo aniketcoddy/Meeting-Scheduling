@@ -7,18 +7,11 @@ export const generateDate = (
 ) => {
   const firstDateOfMonth = dayjs().year(year).month(month).startOf("month");
   const lastDateOfMonth = dayjs().year(year).month(month).endOf("month");
-
+  const today = dayjs();
+  const dates = [];
+  
   const arrayOfDate = [];
 
-  // create prefix date
-  // for (let i = 0; i < firstDateOfMonth.day(); i++) {
-  //   const date = firstDateOfMonth.day(i);
-
-  //   arrayOfDate.push({
-  //     currentMonth: false,
-  //     date,
-  //   });
-  // }
 
   // generate current date
   for (let i = firstDateOfMonth.date(); i <= lastDateOfMonth.date(); i++) {
